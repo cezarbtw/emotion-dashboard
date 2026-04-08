@@ -119,8 +119,8 @@ function renderDashboard(session) {
     currentSession = session;
     const emo = EMOTIONS[session.predominant];
 
-
-    $('#stat-predominant .emotion-icon').textContent = emo.emoji;
+    // REMOVE EMOTES
+    //$('#stat-predominant .emotion-icon').textContent = emo.emoji;
     $('#predominant-emotion').textContent = emo.label;
     $('#predominant-confidence').textContent = `Confiança: ${session.confidence}%`;
     $('#video-duration').textContent = session.duration;
@@ -148,7 +148,7 @@ function renderProbabilities(probs) {
         item.className = 'probability-item';
         item.innerHTML = `
             <div class="probability-meta">
-                <span class="probability-label">${emo.emoji} ${emo.label}</span>
+                <span class="probability-label">${emo.label}</span>
                 <span class="probability-value">${val}%</span>
             </div>
             <div class="probability-bar">
@@ -305,7 +305,7 @@ function renderMiniSessions() {
                 <span class="session-mini-name">${s.name}</span>
                 <span class="session-mini-date">${formatDate(s.date)}</span>
             </div>
-            <span class="session-mini-emotion" style="color:${emo.color}">${emo.emoji} ${emo.label}</span>
+            <span class="session-mini-emotion" style="color:${emo.color}">${emo.label}</span>
         `;
         item.addEventListener('click', () => {
             renderDashboard(s);
@@ -328,7 +328,7 @@ function renderSessionsTable() {
             <td>${s.duration}</td>
             <td>
                 <span class="emotion-tag" style="background:${emo.color}18;color:${emo.color}">
-                    ${emo.emoji} ${emo.label}
+                    ${emo.label}
                 </span>
             </td>
             <td>
