@@ -1,20 +1,13 @@
-// ============================================
-// EmotionLens — Dashboard JS
-// Protótipo Acadêmico — TCC Ciência da Computação
-// ============================================
-
-// --- Emotion Config ---
 const EMOTIONS = {
-    feliz:     { emoji: '😊', color: '#fbbf24', label: 'Feliz' },
-    triste:    { emoji: '😢', color: '#60a5fa', label: 'Triste' },
-    raiva:     { emoji: '😠', color: '#f87171', label: 'Raiva' },
-    surpresa:  { emoji: '😲', color: '#fb923c', label: 'Surpresa' },
-    medo:      { emoji: '😨', color: '#a78bfa', label: 'Medo' },
-    nojo:      { emoji: '🤢', color: '#34d399', label: 'Nojo' },
-    neutro:    { emoji: '😐', color: '#94a3b8', label: 'Neutro' },
+    feliz: { color: '#fbbf24', label: 'Feliz' },
+    triste: { color: '#60a5fa', label: 'Triste' },
+    raiva: { color: '#f87171', label: 'Raiva' },
+    surpresa: { color: '#fb923c', label: 'Surpresa' },
+    medo: { color: '#a78bfa', label: 'Medo' },
+    nojo: { color: '#34d399', label: 'Nojo' },
+    neutro: { color: '#94a3b8', label: 'Neutro' },
 };
 
-// --- Mock Data ---
 const mockSessions = [
     {
         id: 1,
@@ -93,16 +86,14 @@ function generateTimeline(frames) {
     return data;
 }
 
-// --- State ---
 let currentSession = mockSessions[0];
 let timelineChart = null;
 let donutChart = null;
 
-// --- DOM refs ---
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
 
-// --- Navigation ---
+
 function switchView(viewId) {
     $$('.view').forEach(v => v.classList.remove('active'));
     $(`#view-${viewId}`).classList.add('active');
@@ -118,17 +109,17 @@ $('#nav-upload').addEventListener('click', e => { e.preventDefault(); switchView
 $('#link-all-sessions').addEventListener('click', e => { e.preventDefault(); switchView('sessions'); });
 $('#btn-new-upload-from-sessions').addEventListener('click', () => switchView('upload'));
 
-// Mobile menu
+
 $('#menu-toggle').addEventListener('click', () => {
     $('#sidebar').classList.toggle('open');
 });
 
-// --- Render Dashboard ---
+
 function renderDashboard(session) {
     currentSession = session;
     const emo = EMOTIONS[session.predominant];
 
-    // Stats
+
     $('#stat-predominant .emotion-icon').textContent = emo.emoji;
     $('#predominant-emotion').textContent = emo.label;
     $('#predominant-confidence').textContent = `Confiança: ${session.confidence}%`;
